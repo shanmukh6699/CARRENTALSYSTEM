@@ -12,11 +12,17 @@ import org.springframework.stereotype.Service;
 public class CarUserService implements UserDetailsService {
     @Autowired
     private CarUserRepository repository;
+    private String role;
     public void save(CarUser carUser) {
         repository.save(carUser);
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findById(username).get();
+        CarUser carUser = repository.findById(username).get();
+        role = carUser.getRole();
+        return carUser;
+    }
+    public String getRole() {
+        return role;
     }
 }

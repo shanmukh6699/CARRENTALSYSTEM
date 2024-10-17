@@ -75,7 +75,7 @@
     <div align="center">
     <h1 style="font-family:ALGERIAN">Welcome To Car Rental Page</h1>
     <div class="navbar">
-    <div class="dropdown">
+    <!---<div class="dropdown">
     <button class="dropbtn">Customer
     </button>
     <div class="dropdown-content">
@@ -93,14 +93,14 @@
     <a href="/">Variant Deletion</a>
     <a href="/">Variant Reports</a>
     </div>
-    </div>
+    </div>--->
     <div class="dropdown">
     <button class="dropbtn">Car
     </button>
     <div class="dropdown-content">
-    <a href="/">Car Addition</a>
+    <!---<a href="/">Car Addition</a>
     <a href="/">Car Update</a>
-    <a href="/">Car Deletion</a>
+    <a href="/">Car Deletion</a>--->
     <a href="/">Car Report</a>
     </div>
     </div>
@@ -111,7 +111,7 @@
     <a href="/">New Booking</a>
     <a href="/">Booking Update</a>
     <a href="/">Cancellation</a>
-    <a href="/">Booking Report</a>
+    <!---<a href="/">Booking Report</a>-->
     </div>
     </div>
     <a href="/logout">Logout</a>
