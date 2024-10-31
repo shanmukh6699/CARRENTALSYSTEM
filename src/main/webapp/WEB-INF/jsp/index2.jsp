@@ -4,97 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>JSP Template</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dropdown.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            header {
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.6);
-                padding: 8px 19px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 1000;
-            }
-            .header-content {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                align-items: center;
-            }
-            .logo {
-                color: #fff;
-                font-size: 25px;
-                font-weight: bold;
-                margin-right: 30px;
-            }
-            .navbar {
-                display: flex;
-                align-items: center;
-            }
-            .navbar a {
-                font-size: 16px;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-                border-radius:5px;
-            }
-            .dropdown {
-                position: relative;
-            }
-            .dropdown .dropbtn {
-                font-size: 16px;
-                border: none;
-                outline: none;
-                color: white;
-                padding: 14px 16px;
-                background-color: inherit;
-                font-family: inherit;
-            }
-            .navbar a:hover, .dropdown:hover .dropbtn {
-                background-color: indianred;
-            }
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-            .dropdown-content a {
-                float: none;
-                color: black;
-                padding: 8px 12px;
-                text-decoration: none;
-                display: block;
-                text-align: left;
-                border-radius: 5px;
-            }
-            .dropdown-content a:hover {
-                background-color: #ddd;
-            }
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-            .navbar-right {
-                margin-left: auto;
-                margin-right: 30px;
-            }
-            .logout-btn {
-                background-color: darkred;
-                color: white;
-                padding: 6px 10px;
-                margin-right:30px;
-                border-radius:5px;
-            }
-        </style>
 </head>
 <body>
     <header>
@@ -121,8 +33,8 @@
             </div>
         </div>
     </header>
-    <div align="center" style="margin-top: 70px;">
-        <h1 style="font-family:ALGERIAN">Welcome!</h1>
+    <div class="headline">
+        <h1 id="headline">Miles of Smiles Await – Book Your Car Today!</h1>
     </div>
 </body>
 </html>

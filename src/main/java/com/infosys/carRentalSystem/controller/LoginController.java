@@ -38,6 +38,17 @@ public class LoginController {
         return new ModelAndView(page);
     }
 
+    @GetMapping("/")
+    public ModelAndView showHomePage() {
+        String role = service.getRole();
+        String page = "";
+        if(role.equalsIgnoreCase("Admin"))
+            page = "index1";
+        else if(role.equalsIgnoreCase("Customer"))
+            page = "index2";
+        return new ModelAndView(page);
+    }
+
     @GetMapping("/register")
     public  ModelAndView newUserEntryPage() {
         ModelAndView mv = new ModelAndView("newUserEntry");

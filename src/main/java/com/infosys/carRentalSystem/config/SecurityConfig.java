@@ -29,10 +29,12 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/WEB-INF/jsp/**", "/loginpage","/loginerror","/login","/register").permitAll()
+                        .requestMatchers("/WEB-INF/jsp/**", "/loginpage","/loginerror","/login","/register", "/resources/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(login -> login.loginPage("/loginpage").failureHandler(new MyAuthenticationFailureHandler())
+                .formLogin(login -> login
+                        .loginPage("/loginpage")
+                        .failureHandler(new MyAuthenticationFailureHandler())
                         .loginProcessingUrl("/login").defaultSuccessUrl("/index")
                         .permitAll());
         return http.build();

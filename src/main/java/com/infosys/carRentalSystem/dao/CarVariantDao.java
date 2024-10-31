@@ -8,6 +8,7 @@ public interface CarVariantDao {
     public void save(CarVariant carVariant);
     public String generateVariantId();
     public CarVariant findById(String id);
-    public List<CarVariant> findAII();
+    public List<CarVariant> findAll();
     public void deleteVariantById(String id);
+    public List<String> getAllVariantIds();
 }

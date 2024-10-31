@@ -37,12 +37,17 @@ public class CarVariantDaoImpl implements CarVariantDao {
     }
 
     @Override
-    public List<CarVariant> findAII() {
+    public List<CarVariant> findAll() {
         return carVariantRepository.findAll();
     }
 
     @Override
     public void deleteVariantById(String id) {
         carVariantRepository.deleteById(id);
+    }
+
+    @Override
+    public List<String> getAllVariantIds() {
+        return carVariantRepository.getAllVariantIds();
     }
 }
