@@ -15,16 +15,13 @@
 }
 
 .dropdown:hover .dropbtn {
-    color: #E88008;
     text-decoration: underline;
 }
 
 .dropdown-content {
     position: absolute;
-    min-width: 160px;
     padding: 12px 8px;
-    background-color: rgba(249, 249, 249, 0.9);
-    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.7);
     z-index: 1;
     margin-top:-8px;
     display: block;
@@ -36,7 +33,7 @@
 
 .dropdown-content a {
     color: black;
-    padding: 8px 12px;
+    text-wrap:nowrap;
     text-decoration: none;
     display: block;
     text-align: left;

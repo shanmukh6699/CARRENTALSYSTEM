@@ -23,8 +23,7 @@
         </div>
     </header>
     <div class="form-container">
-        <h2 class="form-heading">Add New Car</h2>
-
+        <h2 class="form-heading">Add Car</h2>
         <form:form action="/carAdd" method="post" modelAttribute="carRecord">
             <form:hidden path="available" />
 
@@ -33,7 +32,7 @@
             <br /><br />
 
             <label class="label" for="carName">Enter Car Name:</label>
-            <form:input path="carName" id="carName" class="input" placeholder="Car name" />
+            <form:input path="carName" id="carName" class="input" placeholder="Car name"/>
             <br /><br />
 
             <label class="label" for="carColor">Enter Car Color:</label>
@@ -44,8 +43,8 @@
             <form:input path="manufacturer" id="manufacturer" class="input" placeholder="Manufacturer name" />
             <br /><br />
 
-            <label class="label" for="yearOfMfg">Enter Year of Mfg:</label>
-            <form:input path="yearOfMfg" id="yearOfMfg" class="input" placeholder="Year of manufacture" />
+            <label class="label" for="yearOfMfg">Enter Year of manufacturing:</label>
+            <form:input path="yearOfMfg" id="yearOfMfg" class="input" placeholder="Year of manufacturing" />
             <br /><br />
 
             <label class="label" for="rentRate">Enter Rent rate per hour:</label>

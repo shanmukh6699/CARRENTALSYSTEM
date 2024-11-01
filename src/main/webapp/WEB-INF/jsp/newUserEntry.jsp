@@ -47,6 +47,7 @@
     </header>
     <div class="form-container">
         <h2 class="form-heading">Register</h2>
+        <h3 class="tertiary-heading">Already registered? <span><a class="redirect-link" href="/loginpage">Login here!</a></span></h3>
         <form:form id="registrationForm" method="post" action="/register" modelAttribute="userRecord" class="form-container">
             <label class="label">Enter User Id:</label>
             <form:input path="username" class="input" placeholder="Enter your User ID"/>

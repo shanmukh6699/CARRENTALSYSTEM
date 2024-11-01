@@ -16,6 +16,7 @@
     </header>
     <div class="form-container">
         <h2 class="form-heading">Login</h2>
+        <h3 class="tertiary-heading">New user? <span><a class="redirect-link" href="/register">Register here!</a></span></h3>
         <form action="/login" method="post">
             <label class="label" for="username">Enter User Id:</label>
             <input

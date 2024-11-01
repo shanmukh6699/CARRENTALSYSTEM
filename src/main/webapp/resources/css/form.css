@@ -7,11 +7,16 @@
     max-height:85%;
     overflow-y:auto;
     scrollbar-width: thin;
-    scrollbar-color: #E85706 transparent;
+    scrollbar-color: grey transparent;
+    border:1px solid black;
 }
 
-form {
+form, #registrationForm {
+    background-color: inherit;
+    margin-top: 8px;
     padding:16px 18px;
+    border-radius:0;
+    border:0;
 }
 
 .form-heading {
@@ -93,4 +98,8 @@ form {
 
 .reset-button:hover {
     background-color: #999;
+}
+
+#variantId {
+    color:white;
 }

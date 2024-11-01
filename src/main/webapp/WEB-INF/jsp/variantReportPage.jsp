@@ -1,43 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Variants</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table.css">
 </head>
 <body>
-  <div align="center">
-  <h1><u>Car Variant Report</u></h1>
-  <br/>
-  <h2>
-    <table border="2">
-    <tr>
-    <th>Variant Id</th>
-    <th>Variant Name</th>
-    <th>Number of Seat</th>
-    <th>Fuel Usage</th>
-    <th> Delete Record</th>
-    </tr>
+  <header>
+      <div class="header-content">
+          <div class="navbar">
+              <h1 class="logo">rent&drive</h1>
+              <a href="/index" class="btn" id="home-btn">Home</a>
+          </div>
+          </div>
+          <div class="navbar navbar-right">
 
-    <c:forEach items="${variantList }" var ="variant">
-    <tr>
-    <td>${variant.variantId}</td>
-    <td>${variant.variantName}</td>
-    <td>${variant.numberOfSeat}</td>
-    <td>${variant.fuel}</td>
-    <td><a href="/variantDeletion/${variant.variantId}">Variant Deletion</a></td>
-    </tr>
-    </c:forEach>
+          </div>
+      </div>
+  </header>
+  <div class="main-container">
+      <h1 class="primary-heading">Car Variant Report</h1>
+      <br />
+      <div class="table-container">
+        <table class="table">
+          <tr class="table-header">
+            <th>Variant Id</th>
+            <th>Variant Name</th>
+            <th>Number of Seats</th>
+            <th>Fuel</th>
+            <th>Delete</th>
+          </tr>
 
-
-    </table>
-  </h2>
-  <br/>
-  <h3><a href="/index">Return</a></h3>
-
+          <c:forEach items="${variantList }" var="variant">
+            <tr class="table-row">
+              <td>${variant.variantId}</td>
+              <td>${variant.variantName}</td>
+              <td>${variant.numberOfSeat}</td>
+              <td>${variant.fuel}</td>
+              <td><a class="delete-link" href="/variantDeletion/${variant.variantId}">Delete</a></td>
+            </tr>
+          </c:forEach>
+        </table>
+      </div>
+      <br />
+      <h3><a class="return-link" href="/index">Return</a></h3>
   </div>
 </body>
 </html>
