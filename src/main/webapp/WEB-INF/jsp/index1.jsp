@@ -36,7 +36,7 @@
                         <a href="/carAdd">Car Addition</a>
                         <a href="/">Car Update</a>
                         <a href="/">Car Deletion</a>
-                        <a href="/">Car Report</a>
+                        <a href="/carReport">Car Report</a>
                     </div>
                 </div>
                 <div class="dropdown">

@@ -16,7 +16,7 @@
                 <div class="dropdown">
                     <button class="dropbtn">Car</button>
                     <div class="dropdown-content">
-                        <a href="/">Car Report</a>
+                        <a href="/carReport">Car Report</a>
                     </div>
                 </div>
                 <div class="dropdown">

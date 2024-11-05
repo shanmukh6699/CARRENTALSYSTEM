@@ -53,7 +53,7 @@
 
             <div class="variantIdContainer">
                 <label class="label" for="variantId">Select Variant:</label>
-                <form:select path="variantId" class="input variantId">
+                <form:select path="variantId" class="input variantId" id="carVariantId">
                     <form:option value="" label="Select Variant Id" disabled="true" />
                     <c:forEach items="${variantIdList}" var="vids">
                         <form:option value="${vids}">${vids}</form:option>

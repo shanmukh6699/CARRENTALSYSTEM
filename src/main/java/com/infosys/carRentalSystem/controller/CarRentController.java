@@ -3,22 +3,29 @@ package com.infosys.carRentalSystem.controller;
 import com.infosys.carRentalSystem.bean.Car;
 import com.infosys.carRentalSystem.bean.CarVariant;
 import com.infosys.carRentalSystem.dao.CarDao;
+import com.infosys.carRentalSystem.dao.CarUserRepository;
 import com.infosys.carRentalSystem.dao.CarVariantDao;
+import com.infosys.carRentalSystem.service.CarUserService;
+import com.oracle.wls.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CarRentController {
+    @Autowired
+    private CarVariantDao carVariantDao;
 
     @Autowired
-    CarVariantDao carVariantDao;
+    private CarDao carDao;
 
     @Autowired
-    CarDao carDao;
+    private CarUserService carUserService;
 
     @GetMapping("/variantAdd")
     public ModelAndView showVariantEntryPage() {
@@ -64,14 +71,32 @@ public class CarRentController {
         return new ModelAndView("redirect:/index");
     }
 
-    /*@GetMapping("/carReport")
+    @GetMapping("/carReport")
     public ModelAndView showCarReportPage() {
+        String role = carUserService.getRole();
+        String page="";
+        if(role.equalsIgnoreCase("Admin"))
+            page = "carReportPageAdmin";
+        else if(role.equalsIgnoreCase("Customer"))
+            page = "carReportPageCustomer";
+
         List<Car> carList = carDao.findAll();
-        ModelAndView mv = new ModelAndView("carReportPage");
+        List<CarVariant> variantList = carVariantDao.findAll();
+
+        Map<String, CarVariant> variantMap = new HashMap<>();
+        variantList.forEach(variant -> {
+            variantMap.put(variant.getVariantId(), variant);
+        });
+
+        ModelAndView mv = new ModelAndView(page);
+
         mv.addObject("carList", carList);
+        mv.addObject("variantMap", variantMap);
+
         return mv;
     }
 
+    /*
     @GetMapping("/carDeletion/{id}")
     public ModelAndView deleteCar(@PathVariable String id) {
         carVariantDao.deleteVariantById(id);
