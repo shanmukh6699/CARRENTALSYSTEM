@@ -26,7 +26,6 @@
                     <button class="dropbtn">Variant</button>
                     <div class="dropdown-content">
                         <a href="/variantAdd">Variant Addition</a>
-                        <a href="/">Variant Deletion</a>
                         <a href="/variantReport">Variant Reports</a>
                     </div>
                 </div>
@@ -34,8 +33,6 @@
                     <button class="dropbtn">Car</button>
                     <div class="dropdown-content">
                         <a href="/carAdd">Car Addition</a>
-                        <a href="/">Car Update</a>
-                        <a href="/">Car Deletion</a>
                         <a href="/carReport">Car Report</a>
                     </div>
                 </div>

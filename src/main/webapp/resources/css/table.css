@@ -1,28 +1,65 @@
+.main-container {
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: calc(100vh - 52px);
+    margin-top:48px;
+    min-width:50%;
+    margin-right:-100px;
+    border-left:1px solid black;
+    padding: 0 10px;
+}
+
+#carReportMainContainer {
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: 20px;
+    border:1px solid black;
+    min-height: calc(100vh - 150px);
+    border-radius:5px;
+}
+
+
 .table-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: grey transparent;
+  max-height: calc(100vh - 300px);
 }
 
 .table {
   width: 80%;
   border-collapse: collapse;
   margin: 0 auto;
+  border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
 }
 
 .table-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background: linear-gradient(90deg, #E85421, orange);
   color: white;
 }
 
 .table-header th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   padding: 10px;
   text-align: left;
   font-weight: 100;
   color:white;
   white-space: nowrap;
+  border-collapse:collapse;
+  border-right: 1px solid black;
 }
 
 .table-row:nth-child(even) {
@@ -33,16 +70,33 @@
   padding: 12px;
   border-bottom: 1px solid #ddd;
   white-space: nowrap;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
-.delete-link {
-  color: #d9534f;
+.action-btn {
   text-decoration: none;
   font-weight: bold;
 }
+.action-cell {
+  height:100%;
+}
 
-.delete-link:hover {
+.delete-btn {
+  color: #d9534f;
+}
+
+.delete-btn:hover {
   color: #c9302c;
+}
+
+.update-btn {
+   display:block;
+   margin-bottom:20px;
+}
+
+.update-btn:hover {
+   opacity:0.8;
 }
 
 .return-link {
@@ -57,17 +111,22 @@
   color: #23527c;
 }
 
-.main-container {
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    min-height: calc(100vh - 52px);
-    margin-top:48px;
-    min-width:50%;
-    margin-right:-100px;
-    border-left:1px solid black;
+
+
+.inner-table {
+    display: inline-table;
+    width: 100%;
+    border-collapse: collapse;
 }
 
+.inner-table th, .inner-table td {
+    padding: 2px;
+    font-size: 0.9em;
+    border:none;
+    text-align:left;
+}
+
+.inner-table th {
+    font-weight: normal;
+}
 

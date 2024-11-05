@@ -18,12 +18,11 @@
           </div>
           </div>
           <div class="navbar navbar-right">
-
           </div>
       </div>
   </header>
-  <div class="main-container">
-      <h1 class="primary-heading">Car Variant Report</h1>
+  <div class="main-container" id="carReportMainContainer">
+      <h1 class="primary-heading">Car Report</h1>
       <br />
       <div class="table-container">
         <table class="table">
@@ -35,7 +34,8 @@
                 <th>Year Of Mfg</th>
                 <th>Rent Rate</th>
                 <th>Variant Detail</th>
-                <th>Available</th>
+                <th>Availability</th>
+                <th>Actions</th>
             </tr>
 
             <c:forEach items="${carList}" var="car">
@@ -45,7 +45,7 @@
                     <td>${car.carColor}</td>
                     <td>${car.manufacturer}</td>
                     <td>${car.yearOfMfg}</td>
-                    <td>${car.rentRate}</td>
+                    <td>₹${car.rentRate}/hour</td>
                     <td>
                         <c:set var="carVariant" value="${variantMap[car.variantId]}" />
                         <c:if test="${carVariant != null}">
@@ -59,7 +59,7 @@
                                     <td>${carVariant.variantName}</td>
                                 </tr>
                                 <tr>
-                                    <th>Number of Seats</th>
+                                    <th>No. of Seats</th>
                                     <td>${carVariant.numberOfSeat}</td>
                                 </tr>
                                 <tr>
@@ -70,21 +70,14 @@
                         </c:if>
                     </td>
                     <td>
-                    <c:if test="${car.available == true}">
-                        <td>Available</td>
-                    </c:if>
-                    <c:if test="${car.available == false}">
-                        <td>Not Available</td>
-                    </c:if>
-
-                    <%--<c:choose>
-                        <c:when test="${car.available == true}">
-                            <td>Available</td>
-                        </c:when>
-                        <c:otherwise>
-                            <td>Not Available</td>
-                        </c:otherwise>
-                    </c:choose>--%>
+                        <c:choose>
+                            <c:when test="${car.available == true}">Available</c:when>
+                            <c:otherwise>Not Available</c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td class="action-cell">
+                        <a href="carUpdate/${car.carNumber}" class="action-btn update-btn">Update</a>
+                        <a href="/carDelete/${car.carNumber}" class="action-btn delete-btn">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

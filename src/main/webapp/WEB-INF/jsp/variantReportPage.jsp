@@ -41,7 +41,7 @@
               <td>${variant.variantName}</td>
               <td>${variant.numberOfSeat}</td>
               <td>${variant.fuel}</td>
-              <td><a class="delete-link" href="/variantDeletion/${variant.variantId}">Delete</a></td>
+              <td><a class="action-btn delete-btn" href="/variantDeletion/${variant.variantId}">Delete</a></td>
             </tr>
           </c:forEach>
         </table>

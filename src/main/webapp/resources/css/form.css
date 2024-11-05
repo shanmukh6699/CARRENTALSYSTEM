@@ -48,6 +48,11 @@ form, #registrationForm {
     box-shadow: 0 0 5px rgba(232, 86, 8, 0.5);
 }
 
+.input:disabled {
+    outline: none;
+    color:white;
+}
+
 .userTypeContainer {
     display:flex;
     align-items:center;
@@ -102,6 +107,7 @@ form, #registrationForm {
 
 #variantId {
     color:white;
+    width:70%;
 }
 
 #carVariantId {
