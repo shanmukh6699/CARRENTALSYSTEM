@@ -18,7 +18,7 @@
             </div>
             </div>
             <div class="navbar navbar-right">
-
+                <a href="/logout" class="logout-btn">Logout</a>
             </div>
         </div>
     </header>
@@ -55,6 +55,10 @@
 
             <label class="label" for="rentRate">Enter New Rent rate per hour:</label>
             <form:input path="rentRate" id="rentRate" class="input" placeholder="Rent rate per hour" />
+            <br /><br />
+
+            <label class="label" for="available">Enter New Availability status:</label>
+            <form:input path="available" id="available" class="input" placeholder="true" />
             <br /><br />
 
             <div class="variantIdContainer">

@@ -4,6 +4,7 @@ import com.infosys.carRentalSystem.bean.CarVariant;
 
 import java.util.List;
 
+
 public interface CarVariantDao {
     public void save(CarVariant carVariant);
     public String generateVariantId();

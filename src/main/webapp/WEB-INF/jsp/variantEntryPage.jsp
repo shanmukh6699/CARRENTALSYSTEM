@@ -18,6 +18,7 @@
             </div>
             </div>
             <div class="navbar navbar-right">
+                <a href="/logout" class="logout-btn">Logout</a>
             </div>
         </div>
     </header>

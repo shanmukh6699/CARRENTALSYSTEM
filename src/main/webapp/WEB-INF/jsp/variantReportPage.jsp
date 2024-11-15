@@ -18,11 +18,11 @@
           </div>
           </div>
           <div class="navbar navbar-right">
-
+                <a href="/logout" class="logout-btn">Logout</a>
           </div>
       </div>
   </header>
-  <div class="main-container">
+  <div class="main-container"3>
       <h1 class="primary-heading">Car Variant Report</h1>
       <br />
       <div class="table-container">

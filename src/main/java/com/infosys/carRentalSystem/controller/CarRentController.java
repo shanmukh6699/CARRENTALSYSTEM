@@ -3,12 +3,9 @@ package com.infosys.carRentalSystem.controller;
 import com.infosys.carRentalSystem.bean.Car;
 import com.infosys.carRentalSystem.bean.CarVariant;
 import com.infosys.carRentalSystem.dao.CarDao;
-import com.infosys.carRentalSystem.dao.CarUserRepository;
 import com.infosys.carRentalSystem.dao.CarVariantDao;
 import com.infosys.carRentalSystem.service.CarUserService;
-import com.oracle.wls.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -103,10 +100,16 @@ public class CarRentController {
     }
 
     @GetMapping("/carUpdate/{id}")
-    public ModelAndView updateCar(@PathVariable String id) {
+    public ModelAndView showCarUpdatePage(@PathVariable String id) {
         Car car = carDao.findById(id);
         ModelAndView mv = new ModelAndView("carUpdatePage");
         mv.addObject("carRecord", car);
         return mv;
+    }
+
+    @PostMapping("/carUpdate")
+    public ModelAndView saveCarUpdatePage(@ModelAttribute("carRecord") Car car) {
+        carDao.save(car);
+        return new ModelAndView("redirect:/carReport");
     }
 }

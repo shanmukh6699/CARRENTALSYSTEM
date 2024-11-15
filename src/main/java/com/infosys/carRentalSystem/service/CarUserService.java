@@ -13,15 +13,29 @@ public class CarUserService implements UserDetailsService {
     @Autowired
     private CarUserRepository repository;
     private String role;
+    private String username;
+    private String email;
+
     public void save(CarUser carUser) {
         repository.save(carUser);
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         CarUser carUser = repository.findById(username).get();
-        role = carUser.getRole();
+        this.role = carUser.getRole();
+        this.email = carUser.getEmail();
+        this.username = carUser.getUsername();
         return carUser;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     public String getRole() {
         return role;
     }

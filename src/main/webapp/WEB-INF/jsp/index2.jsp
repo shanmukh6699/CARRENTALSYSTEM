@@ -29,6 +29,7 @@
                 </div>
             </div>
             <div class="navbar navbar-right">
+                <a href="/myaccount" class="myaccount-btn">My Account</a>
                 <a href="/logout" class="logout-btn">Logout</a>
             </div>
         </div>

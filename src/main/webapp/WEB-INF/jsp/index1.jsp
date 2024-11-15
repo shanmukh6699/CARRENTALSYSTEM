@@ -16,10 +16,7 @@
                 <div class="dropdown">
                     <button class="dropbtn">Customer</button>
                     <div class="dropdown-content">
-                        <a href="/">Customer Addition</a>
-                        <a href="/">Customer Update</a>
-                        <a href="/">Customer Deletion</a>
-                        <a href="/">Customer Reports</a>
+                        <a href="/customerReport">Customer Reports</a>
                     </div>
                 </div>
                 <div class="dropdown">

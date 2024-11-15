@@ -12,8 +12,9 @@ public class CarRentalSystemApplication {
 
 }
 
-// userid: lotus, password: mango, role: mango
+// userid: lotus, password: mango, role: Admin
 // tulip, apple, customer
-
+// jasmine, Guava@1
+// ewilliams, Banana@1
 
 
