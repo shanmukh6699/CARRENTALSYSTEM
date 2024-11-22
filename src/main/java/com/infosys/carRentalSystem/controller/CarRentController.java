@@ -4,8 +4,11 @@ import com.infosys.carRentalSystem.bean.Car;
 import com.infosys.carRentalSystem.bean.CarVariant;
 import com.infosys.carRentalSystem.dao.CarDao;
 import com.infosys.carRentalSystem.dao.CarVariantDao;
+import com.infosys.carRentalSystem.exception.CustomerLicenceException;
+import com.infosys.carRentalSystem.exception.CustomerStatusException;
 import com.infosys.carRentalSystem.service.CarUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@ControllerAdvice
 public class CarRentController {
     @Autowired
     private CarVariantDao carVariantDao;
@@ -111,5 +115,21 @@ public class CarRentController {
     public ModelAndView saveCarUpdatePage(@ModelAttribute("carRecord") Car car) {
         carDao.save(car);
         return new ModelAndView("redirect:/carReport");
+    }
+
+
+    @ExceptionHandler(CustomerStatusException.class)
+    public ModelAndView handleCustomerStatusException(CustomerStatusException exception)  {
+        String message="Sorry Dear Customer, Need to complete last booking & payment procedures";
+        ModelAndView mv=new ModelAndView("carBookingErrorPage");
+        mv.addObject("errorMessage",message);
+        return mv;
+    }
+    @ExceptionHandler(CustomerLicenceException.class)
+    public ModelAndView handleCustomerLicenceException(CustomerLicenceException exception) {
+        String message="Sorry Dear Customer, Need to renew your Licence";
+        ModelAndView mv=new ModelAndView("carBookingErrorPage");
+        mv.addObject("errorMessage",message);
+        return mv;
     }
 }

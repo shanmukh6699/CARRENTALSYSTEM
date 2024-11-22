@@ -61,4 +61,9 @@ public class CustomerController {
         return new ModelAndView("redirect:/myaccount");
     }
 
+    @GetMapping("/customerDelete/{id}")
+    public ModelAndView deleteCustomer(@PathVariable String id) {
+        customerDao.deleteCustomerById(id);
+        return new ModelAndView("redirect:/customerReport");
+    }
 }
