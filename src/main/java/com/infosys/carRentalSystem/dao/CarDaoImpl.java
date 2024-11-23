@@ -32,9 +32,4 @@ public class CarDaoImpl implements CarDao {
     public void deleteCarById(String id) {
         repository.deleteById(id);
     }
-
-    @Override
-    public List<Car> getAvailableCars(){
-        return repository.getAvailableCars();
-    }
 }

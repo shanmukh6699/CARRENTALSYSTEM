@@ -37,7 +37,6 @@
             <th>License Number</th>
             <th>Expiry Date</th>
             <th>Status</th>
-            <th>Actions</th>
           </tr>
 
           <c:forEach items="${customers}" var="customer">
@@ -51,9 +50,6 @@
               <td>${customer.license}</td>
               <td>${customer.expiryDate}</td>
               <td>${customer.status}</td>
-              <td class="action-cell">
-                  <a href="/customerDelete/${customer.username}" class="action-btn delete-btn">Delete</a>
-              </td>
             </tr>
           </c:forEach>
         </table>

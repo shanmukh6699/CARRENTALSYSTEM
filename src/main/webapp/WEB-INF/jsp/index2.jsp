@@ -13,11 +13,16 @@
         <div class="header-content">
             <div class="navbar">
                 <h1 class="logo">CarRentalSystem</h1>
-
+                <div class="dropdown">
+                    <button class="dropbtn">Car</button>
+                    <div class="dropdown-content">
+                        <a href="/carReport">Car Report</a>
+                    </div>
+                </div>
                 <div class="dropdown">
                     <button class="dropbtn">Booking</button>
                     <div class="dropdown-content">
-                        <a href="/carReport">New Booking</a>
+                        <a href="/">New Booking</a>
                         <a href="/">Booking Update</a>
                         <a href="/">Cancellation</a>
                     </div>
