@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>JSP Template</title>
+    <title>Home</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dropdown.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,13 +16,13 @@
                 <div class="dropdown">
                     <button class="dropbtn">Car</button>
                     <div class="dropdown-content">
-                        <a href="/carReport">Car Report</a>
+                        <a href="/customerCarReport">Car Report</a>
                     </div>
                 </div>
                 <div class="dropdown">
                     <button class="dropbtn">Booking</button>
                     <div class="dropdown-content">
-                        <a href="/">New Booking</a>
+                        <a href="/customerCarReport">New Booking</a>
                         <a href="/">Booking Update</a>
                         <a href="/">Cancellation</a>
                     </div>

@@ -27,13 +27,13 @@
             <c:when test="${customer == null}">
                 <div class="incomplete-prof-container">
                     <p class="incomplete-message">Looks like you have not completed your profile yet! Please complete your profile by providing your details.</p>
-                    <a href="/myaccount/update" class="complete-profile-button">Complete profile!</a>
+                    <a href="/myaccount/completeProfile" class="complete-profile-button">Complete profile!</a>
                 </div>
             </c:when>
             <c:otherwise>
                     <div class="section my-account">
                         <h2 class="primary-heading">My Account</h2>
-                        <a href="/myaccount/update" class="update-button">Update Details</a>
+                        <a href="/customer/update/${customer.username}" class="update-button">Update Details</a>
                     </div>
                     <div class="section my-details">
                         <h2 class="section-heading">Customer details:</h2>

@@ -31,4 +31,16 @@ public class CustomerDaoImpl implements CustomerDao{
     public void deleteCustomerById(String id) {
         customerRepository.deleteById(id);
     }
+
+    @Override
+    public Boolean getCustomerStatusByUsername(String username) {
+       Boolean status =  customerRepository.getCustomerStatusByUsername(username);
+       return status == null || status;
+    }
+    @Override
+    public String getLicenceExpiryDate(String username) {
+        return customerRepository.getLicenceExpiryDate(username);
+    }
+
+
 }

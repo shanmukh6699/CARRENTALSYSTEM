@@ -33,6 +33,13 @@ public class Customer {
         this.status = status;
     }
 
+    public Customer(String username, String email) {
+        super();
+        this.username = username;
+        this.email = email;
+        this.status = true;
+    }
+
     public String getUsername() {
         return username;
     }

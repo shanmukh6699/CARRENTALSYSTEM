@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Update profile details</title>
+    <title>Complete profile</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/form.css">
 </head>
@@ -28,6 +28,7 @@
         <form:form action="/myaccount/update" method="post" modelAttribute="customer">
             <form:hidden path="username" />
             <form:hidden path="email" />
+            <form:hidden path="status"/>
 
             <label class="label" for="username">Username:</label>
             <form:input path="username" id="username" class="input" disabled="true" />

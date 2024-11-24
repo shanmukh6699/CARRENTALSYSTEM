@@ -4,7 +4,11 @@ import com.infosys.carRentalSystem.bean.Car;
 import com.infosys.carRentalSystem.bean.CarVariant;
 import com.infosys.carRentalSystem.dao.CarDao;
 import com.infosys.carRentalSystem.dao.CarVariantDao;
+import com.infosys.carRentalSystem.dao.CustomerDao;
+import com.infosys.carRentalSystem.exception.CustomerLicenceException;
+import com.infosys.carRentalSystem.exception.CustomerStatusException;
 import com.infosys.carRentalSystem.service.CarUserService;
+import com.infosys.carRentalSystem.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,15 +18,18 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@ControllerAdvice
 public class CarRentController {
     @Autowired
     private CarVariantDao carVariantDao;
-
     @Autowired
     private CarDao carDao;
-
     @Autowired
     private CarUserService carUserService;
+    @Autowired
+    private CustomerDao customerDao;
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping("/variantAdd")
     public ModelAndView showVariantEntryPage() {
@@ -68,15 +75,36 @@ public class CarRentController {
         return new ModelAndView("redirect:/index");
     }
 
+    @GetMapping("/customerCarReport")
+    public ModelAndView showCustomerCarReportPage() {
+        String username = carUserService.getUsername();
+        String role = carUserService.getRole();
+        boolean status = customerDao.getCustomerStatusByUsername(username);
+        if(!status) throw new CustomerStatusException();
+
+        String licenceExpiryDate = customerDao.getLicenceExpiryDate(username);
+
+        if(!customerService.validateCustomerLicenceDate(licenceExpiryDate))
+            throw new CustomerLicenceException();
+
+        List<Car> carList = carDao.getAvailableCars();
+        List<CarVariant> variantList = carVariantDao.findAll();
+
+        Map<String, CarVariant> variantMap = new HashMap<>();
+        variantList.forEach(variant -> {
+            variantMap.put(variant.getVariantId(), variant);
+        });
+
+        ModelAndView mv = new ModelAndView("carReportPageCustomer");
+
+        mv.addObject("carList", carList);
+        mv.addObject("variantMap", variantMap);
+
+        return mv;
+    }
+
     @GetMapping("/carReport")
     public ModelAndView showCarReportPage() {
-        String role = carUserService.getRole();
-        String page="";
-        if(role.equalsIgnoreCase("Admin"))
-            page = "carReportPageAdmin";
-        else if(role.equalsIgnoreCase("Customer"))
-            page = "carReportPageCustomer";
-
         List<Car> carList = carDao.findAll();
         List<CarVariant> variantList = carVariantDao.findAll();
 
@@ -85,7 +113,7 @@ public class CarRentController {
             variantMap.put(variant.getVariantId(), variant);
         });
 
-        ModelAndView mv = new ModelAndView(page);
+        ModelAndView mv = new ModelAndView("carReportPageAdmin");
 
         mv.addObject("carList", carList);
         mv.addObject("variantMap", variantMap);
@@ -112,4 +140,21 @@ public class CarRentController {
         carDao.save(car);
         return new ModelAndView("redirect:/carReport");
     }
+
+    @ExceptionHandler(CustomerStatusException.class)
+    public ModelAndView handleCustomerStatusException(CustomerStatusException exception) {
+        String message="Sorry Dear Customer, Need to complete last booking & payment procedures";
+        ModelAndView mv=new ModelAndView("errorPage");
+        mv.addObject("errorMessage",message);
+        return mv;
+    }
+    @ExceptionHandler(CustomerLicenceException.class)
+    public ModelAndView handleCustomerLicenceException(CustomerLicenceException exception) {
+        String message = "Sorry Dear Customer, Need to renew your Licence";
+        ModelAndView mv = new ModelAndView("errorPage");
+        mv.addObject("errorMessage",message);
+        return mv;
+    }
+
+
 }

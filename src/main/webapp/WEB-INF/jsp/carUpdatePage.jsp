@@ -58,7 +58,7 @@
             <br /><br />
 
             <label class="label" for="available">Enter New Availability status:</label>
-            <form:input path="available" id="available" class="input" placeholder="true" />
+            <form:input path="available" id="available" class="input" placeholder="Status" />
             <br /><br />
 
             <div class="variantIdContainer">
