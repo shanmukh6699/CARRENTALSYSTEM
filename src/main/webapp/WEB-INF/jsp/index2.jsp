@@ -23,8 +23,7 @@
                     <button class="dropbtn">Booking</button>
                     <div class="dropdown-content">
                         <a href="/customerCarReport">New Booking</a>
-                        <a href="/">Booking Update</a>
-                        <a href="/">Cancellation</a>
+                        <a href="/bookingReport">Booking Reports</a>
                     </div>
                 </div>
             </div>

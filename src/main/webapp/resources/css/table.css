@@ -98,12 +98,12 @@
   color: #c9302c;
 }
 
-.update-btn {
+.update-btn, .book-btn {
    display:block;
    margin-bottom:20px;
 }
 
-.update-btn:hover {
+.update-btn:hover, .book-btn:hover {
    opacity:0.8;
 }
 

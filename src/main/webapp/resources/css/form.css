@@ -11,6 +11,10 @@
     border:1px solid black;
 }
 
+#payment-form-container {
+    margin-right: 250px;
+}
+
 form, #registrationForm {
     background-color: inherit;
     margin-top: 8px;

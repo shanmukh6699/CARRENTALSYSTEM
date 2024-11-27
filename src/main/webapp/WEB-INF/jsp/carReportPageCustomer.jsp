@@ -37,6 +37,7 @@
                 <th>Rent Rate</th>
                 <th>Variant Detail</th>
                 <th>Availability</th>
+                <th>Actions</th>
             </tr>
 
             <c:forEach items="${carList}" var="car">
@@ -75,6 +76,9 @@
                             <c:when test="${car.available == true}">Available</c:when>
                             <c:otherwise>Not Available</c:otherwise>
                         </c:choose>
+                    </td>
+                    <td class="action-cell">
+                        <a href="/newBooking/${car.carNumber}" class="action-btn book-btn">Book</a>
                     </td>
                 </tr>
             </c:forEach>

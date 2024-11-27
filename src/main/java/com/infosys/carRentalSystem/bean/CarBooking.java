@@ -8,6 +8,7 @@ public class CarBooking {
     @Id
     private String bookingId;
     private String username;
+    private String license;
     private String carNumber;
     private String variantId;
     private String fromDate;
@@ -16,23 +17,28 @@ public class CarBooking {
     private Double advancePayment;
     private Double pendingPayment;
     private String transactionId;
-    private Boolean status;
-
+    private String status;
+    /*
+         CNF : Confirmed (Booking ongoing)
+         P : Pending (Advanced payment not done)
+         C : Cancelled
+         R : Returned (Booking completed)
+    */
     public CarBooking() {
         super();
-
     }
 
     public CarBooking(String bookingId) {
         super();
-        this.bookingId=bookingId;
-        this.status=false;
-        this.pendingPayment=0.0;
+        this.bookingId = bookingId;
+        this.status = "P";
     }
 
-    public CarBooking(String bookingId, String username, String carNumber, String variantId, String fromDate, String toDate, Double totalPayment, Double advancePayment, Double pendingPayment, String transactionId, Boolean status) {
+
+    public CarBooking(String bookingId, String username, String license, String carNumber, String variantId, String fromDate, String toDate, Double totalPayment, Double advancePayment, Double pendingPayment, String transactionId, String status) {
         this.bookingId = bookingId;
         this.username = username;
+        this.license = license;
         this.carNumber = carNumber;
         this.variantId = variantId;
         this.fromDate = fromDate;
@@ -42,6 +48,19 @@ public class CarBooking {
         this.pendingPayment = pendingPayment;
         this.transactionId = transactionId;
         this.status = status;
+    }
+
+    public CarBooking(String bookingId, String username, String license, String carNumber, String variantId) {
+        this.bookingId = bookingId;
+        this.username = username;
+        this.license = license;
+        this.carNumber = carNumber;
+        this.variantId = variantId;
+
+        this.status = "P";
+        this.transactionId = "";
+        this.pendingPayment = 0.0;
+        this.totalPayment = 0.0;
     }
 
     public String getBookingId() {
@@ -98,10 +117,10 @@ public class CarBooking {
     public void setPendingPayment(Double pendingPayment) {
         this.pendingPayment = pendingPayment;
     }
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
     }
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -111,6 +130,14 @@ public class CarBooking {
 
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
     }
 
     @Override

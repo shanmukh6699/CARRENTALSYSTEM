@@ -1,7 +1,10 @@
 package com.infosys.carRentalSystem.controller;
 
 import com.infosys.carRentalSystem.bean.Car;
+import com.infosys.carRentalSystem.bean.CarBooking;
 import com.infosys.carRentalSystem.bean.CarVariant;
+import com.infosys.carRentalSystem.bean.Customer;
+import com.infosys.carRentalSystem.dao.CarBookingDao;
 import com.infosys.carRentalSystem.dao.CarDao;
 import com.infosys.carRentalSystem.dao.CarVariantDao;
 import com.infosys.carRentalSystem.dao.CustomerDao;
@@ -13,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +37,9 @@ public class CarRentController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private CarBookingDao carBookingDao;
+
     @GetMapping("/variantAdd")
     public ModelAndView showVariantEntryPage() {
         String newId = carVariantDao.generateVariantId();
@@ -48,7 +57,6 @@ public class CarRentController {
     @GetMapping("/variantReport")
     public ModelAndView showVariantReportPage() {
         List<CarVariant> variantList = carVariantDao.findAll();
-        variantList.forEach(v-> System.out.println(v));
         ModelAndView mv = new ModelAndView("variantReportPage");
         mv.addObject("variantList", variantList);
         return mv;
@@ -139,6 +147,99 @@ public class CarRentController {
     public ModelAndView saveCarUpdatePage(@ModelAttribute("carRecord") Car car) {
         carDao.save(car);
         return new ModelAndView("redirect:/carReport");
+    }
+
+    @GetMapping("/newBooking/{carNumber}")
+    public ModelAndView showNewBookingPage(@PathVariable String carNumber) {
+        CarBooking carBooking = new CarBooking();
+        carBooking.setBookingId(carBookingDao.generateBookingId());
+        carBooking.setCarNumber(carNumber);
+        Double rentRate = carDao.findById(carNumber).getRentRate();
+        carBooking.setUsername(carUserService.getUsername());
+
+        ModelAndView mv = new ModelAndView("bookingPage");
+        mv.addObject("carBooking", carBooking);
+        mv.addObject("rentRate", rentRate);
+        return mv;
+    }
+    @PostMapping("/createBooking")
+    public ModelAndView createBookingAndRedirectToPaymentPage(@ModelAttribute("carBooking") CarBooking carBooking) {
+        System.out.println(carBooking.getBookingId());
+        System.out.println(carBooking.getCarNumber());
+        System.out.println("1");
+
+        Double rentRate = carDao.findById(carBooking.getCarNumber()).getRentRate();
+        System.out.println("2");
+
+        long days = calculateDaysBetween(carBooking.getFromDate(), carBooking.getToDate());
+        System.out.println("3");
+
+        carBooking.setTotalPayment(rentRate * days);
+        System.out.println("4");
+
+        carBooking.setStatus("P");
+        carBooking.setAdvancePayment(0.0);
+        carBooking.setPendingPayment(carBooking.getTotalPayment());
+
+        Customer customer = customerDao.findById(carUserService.getUsername());
+        carBooking.setLicense(customer.getLicense());
+        carBooking.setVariantId(carDao.findById(carBooking.getCarNumber()).getVariantId());
+
+        carBookingDao.save(carBooking);
+        return new ModelAndView("redirect:/makePayment/" + carBooking.getBookingId());
+    }
+    @GetMapping("/bookingReport")
+    public ModelAndView showBookingReport() {
+        String username = carUserService.getUsername();
+        String role = carUserService.getRole();
+        String page = role.equalsIgnoreCase("ADMIN")
+                ? "bookingReportAdmin" : "bookingReportCustomer";
+        ModelAndView mv = new ModelAndView(page);
+
+        if (role.equalsIgnoreCase("ADMIN")) {
+            List<CarBooking> allBookings = carBookingDao.findAll();
+            mv.addObject("bookings", allBookings);
+        } else {
+            List<CarBooking> userBookings = carBookingDao.findAllByUsername(username);
+            mv.addObject("bookings", userBookings);
+        }
+        return mv;
+    }
+    @GetMapping("/bookingReport/{bookingId}")
+    public ModelAndView showBookingDetails(@PathVariable String bookingId) {
+        System.out.println("1");
+        String role = carUserService.getRole();
+        System.out.println("2");
+
+        CarBooking carBooking = carBookingDao.findById(bookingId);
+        System.out.println("3");
+
+
+        String page = role.equalsIgnoreCase("ADMIN")
+                ? "bookingDetailAdmin" : "bookingDetailCustomer";
+        ModelAndView mv = new ModelAndView(page);
+        System.out.println("4");
+
+
+        CarVariant variant = carVariantDao.findById(carBooking.getVariantId());
+        System.out.println("5");
+
+        Car car = carDao.findById(carBooking.getCarNumber());
+        System.out.println("6");
+
+
+        mv.addObject("booking", carBooking);
+        mv.addObject("variant", variant);
+        mv.addObject("car", car);
+        System.out.println("7");
+
+        return mv;
+    }
+    private long calculateDaysBetween(String fromDate, String toDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate start = LocalDate.parse(fromDate, formatter);
+        LocalDate end = LocalDate.parse(toDate, formatter);
+        return ChronoUnit.DAYS.between(start, end);
     }
 
     @ExceptionHandler(CustomerStatusException.class)
