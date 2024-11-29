@@ -12,7 +12,7 @@
     <header>
         <div class="header-content">
             <div class="navbar">
-                <h1 class="logo">rent&drive</h1>
+                <h1 class="logo">ROAD TRIP RENTALS</h1>
                 <a href="/index" class="btn" id="home-btn">Home</a>
             </div>
             <div class="navbar navbar-right">
